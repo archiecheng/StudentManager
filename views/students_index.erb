@@ -1,9 +1,18 @@
 <h2>Students</h2>
 <p class="meta">Manage your students. Create, update or remove records.</p>
 
-<p>
+<!-- 操作区：新建 + 搜索 -->
+<div style="display:flex; gap:12px; align-items:center; justify-content:space-between; margin:12px 0;">
   <a class="btn" href="/students/new">+ New Student</a>
-</p>
+
+  <form action="/students" method="get" style="display:flex; gap:8px; align-items:center; flex:1; justify-content:flex-end;">
+    <input type="text" name="q" value="<%= @q %>" placeholder="Search by ID or name..." style="flex:1; max-width:420px; padding:8px;">
+    <button class="btn" type="submit">Search</button>
+    <% if @q && !@q.empty? %>
+      <a class="btn secondary" href="/students">Clear</a>
+    <% end %>
+  </form>
+</div>
 
 <div class="table-wrap">
   <table>
@@ -32,4 +41,26 @@
       <% end %>
     </tbody>
   </table>
+
+  <% page = (@page || 1).to_i %>
+  <% total_pages = (@total_pages || 1).to_i %>
+
+  <% if total_pages > 1 %>
+    <% qparam = (@q && !@q.empty?) ? "&q=#{Rack::Utils.escape(@q)}" : "" %>
+    <div style="display:flex; gap:8px; align-items:center; justify-content:flex-end; margin-top:14px;">
+      <% if page > 1 %>
+        <a class="btn secondary" href="/students?page=<%= page - 1 %><%= qparam %>">‹ Prev</a>
+      <% else %>
+        <button class="btn secondary" disabled>‹ Prev</button>
+      <% end %>
+
+      <span class="meta">Page <strong><%= page %></strong> / <%= total_pages %></span>
+
+      <% if page < total_pages %>
+        <a class="btn secondary" href="/students?page=<%= page + 1 %><%= qparam %>">Next ›</a>
+      <% else %>
+        <button class="btn secondary" disabled>Next ›</button>
+      <% end %>
+    </div>
+  <% end %>
 </div>

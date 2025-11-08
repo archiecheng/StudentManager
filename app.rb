@@ -54,10 +54,10 @@ before "/students" do
 end
 
 # student list page
-get "/students" do
-  @students = Student.order(:created_at)
-  erb(:students_index)
-end
+# get "/students" do
+#   @students = Student.order(:created_at)
+#   erb(:students_index)
+# end
 
 # new form page
 get "/students/new" do
@@ -162,4 +162,37 @@ error do
   status 500
   @error = env["sinatra.error"]
   erb :internal_error
+end
+
+# 学生列表（搜索 + 分页）
+get "/students" do
+  per_page = 5
+  page = params[:page].to_i
+  page = 1 if page < 1
+
+  q = params[:q].to_s.strip
+  scope = Student.order(:created_at)
+
+  if !q.empty?
+    # 如果 q 是纯数字且存在对应 id，直接跳详情页（满足“Show a particular record”）
+    if q.match?(/\A\d+\z/)
+      if (st = Student.find_by(id: q))
+        redirect "/students/#{st.id}"
+      end
+    end
+    # 否则按名字模糊搜索（SQLite 下 LOWER 可用）
+    scope = scope.where("LOWER(name) LIKE ?", "%#{q.downcase}%")
+  end
+
+  total = scope.count
+  total_pages = (total.to_f / per_page).ceil
+  total_pages = 1 if total_pages == 0
+
+  offset = (page - 1) * per_page
+  @students = scope.limit(per_page).offset(offset)
+  @page = page
+  @total_pages = total_pages
+  @q = q
+
+  erb :students_index
 end

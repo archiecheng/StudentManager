@@ -124,3 +124,8 @@ h1, h2 { margin: 0 0 14px; }
   border-top: 1px solid var(--border);
   background: linear-gradient(180deg, rgba(17,25,50,.9), rgba(17,25,50,.7));
 }
+
+.table-wrap td a{
+  color:white;
+  text-decoration: none;
+}
