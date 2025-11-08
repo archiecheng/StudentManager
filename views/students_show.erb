@@ -1,18 +1,19 @@
 <h2>Student Detail</h2>
-<dl>
-  <dt>ID</dt>
-  <dd><%= @student.id%></dd>
-  <dt>Name</dt>
-  <dd><%= @student.name%></dd>
-  <dt>Age</dt>
-  <dd><%= @student.age%></dd>
-  <dt>Created at</dt>
-  <dd><%= @student.created_at%></dd>
-  <dt>Updated At</dt>
-  <dd><%= @student.updated_at%></dd>
-</dl>
+<p class="meta">Record metadata and attributes.</p>
 
-<p style="margin-top:12px">
-  <a class="btn" href="/students/<%= @student.id %>/edit">Edit</a>
-  <a class="btn secondary" href="/students">Back to list</a>
+<div class="table-wrap">
+  <table>
+    <tbody>
+      <tr><td style="width:200px; color:var(--muted)">ID</td><td><%= @student.id %></td></tr>
+      <tr><td style="color:var(--muted)">Name</td><td><%= @student.name %></td></tr>
+      <tr><td style="color:var(--muted)">Age</td><td><%= @student.age %></td></tr>
+      <tr><td style="color:var(--muted)">Created At</td><td><%= @student.created_at %></td></tr>
+      <tr><td style="color:var(--muted)">Updated At</td><td><%= @student.updated_at %></td></tr>
+    </tbody>
+  </table>
+</div>
+
+<p class="form-actions">
+  <a class="btn secondary" href="/students/<%= @student.id %>/edit">Edit</a>
+  <a class="btn" href="/students">Back</a>
 </p>

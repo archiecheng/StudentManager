@@ -2,27 +2,31 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8">
+    <title>Student Manager</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link href="/style.css" rel="stylesheet">
   </head>
   <body>
     <header>
-      <header>
-        <h1><a href="/students">Student Manager</a></h1>
-        <nav>
+      <div class="nav">
+        <div class="brand">
+          <span class="brand-badge"></span>
+          <a href="/students">Student Manager</a>
+        </div>
+        <div class="nav-right">
           <% if logged_in? %>
-            <span style="margin-right:8px">Hi, <%= current_user.email %></span>
+            <span class="meta">Hi, <%= current_user.email %></span>
             <form action="/logout" method="post" style="display:inline">
-              <button class="btn" type="submit">Logout</button>
+              <button class="btn secondary" type="submit">Logout</button>
             </form>
           <% else %>
-            <a class="btn" href="/login">Login</a>
+            <a class="btn secondary" href="/login">Login</a>
             <a class="btn" href="/signup">Sign up</a>
           <% end %>
-        </nav>
-      </header>
+        </div>
+      </div>
     </header>
-    <main>
+    <div class="container">
       <% if (msg = flash(:info)) %>
         <div class="flash info"><%= msg %></div>
       <% end %>
@@ -32,7 +36,10 @@
       <% if (msg = flash(:error)) %>
         <div class="flash error"><%= msg %></div>
       <% end %>
-      <%= yield%>
-    </main>
+      <div class="panel">
+        <%= yield %>
+      </div>
+      <div class="footer">Built with Sinatra + ActiveRecord</div>
+    </div>
   </body>
 </html>
