@@ -49,7 +49,7 @@ end
 
 # ---------- Students CRUD ----------
 
-before "/students" do
+before "/students*" do
   require_login!
 end
 
