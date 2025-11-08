@@ -1,0 +1,18 @@
+<h2>Student Detail</h2>
+<dl>
+  <dt>ID</dt>
+  <dd><%= @student.id%></dd>
+  <dt>Name</dt>
+  <dd><%= @student.name%></dd>
+  <dt>Age</dt>
+  <dd><%= @student.age%></dd>
+  <dt>Created at</dt>
+  <dd><%= @student.created_at%></dd>
+  <dt>Updated At</dt>
+  <dd><%= @student.updated_at%></dd>
+</dl>
+
+<p style="margin-top:12px">
+  <a class="btn" href="/students/<%= @student.id %>/edit">Edit</a>
+  <a class="btn secondary" href="/students">Back to list</a>
+</p>

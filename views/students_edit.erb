@@ -1,0 +1,22 @@
+<h2>Edit Student</h2>
+<% if @errors && @errors.any? %>
+  <div class="errors">
+    <ul>
+      <% @errors.each do |e| %>
+        <li><%= e %></li>
+      <% end %>
+    </ul>
+  </div>
+<% end %>
+<form action="/students/<%= @student.id%>" method="post">
+  <label>Name
+    <input type="text" name="name" value="<%= @student.name %>" required>
+  </label>
+  <label>Age
+    <input type="number" name="age" value="<%= @student.age %>">
+  </label>
+  <div class="form-actions" style="margin-top:12px">
+    <button class="btn" type="submit">Save</button>
+    <a class="btn secondary" href="/students">Cancel</a>
+  </div>
+</form>

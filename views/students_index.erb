@@ -1,0 +1,33 @@
+<h2>Students</h2>
+<p>Total: <strong><%= @students.size%></strong>
+  <% if @students.any? %>
+    <table>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Age</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @students.each do |s|%>
+          <tr>
+            <td><%= s.name%></td>
+            <td><%= s.age%></td>
+            <td class="actions">
+              <a class="btn" href="/students/<%= s.id %>">View</a>
+              <a class="btn" href="/students/<%= s.id %>/edit">Edit</a>
+              <form action="/students/<%= s.id %>/delete" method="post" style="display:inline" onsubmit="return confirm('Delete this student?')">
+                <button class="btn danger" type="submit">Delete</button>
+              </form>
+            </td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+  <%else%>
+    <p>No students yet.</p>
+  <%end%>
+  <p style="margin-top:16px">
+    <a href="/students/new">+New Student</a>
+  </p>
