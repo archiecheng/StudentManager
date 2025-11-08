@@ -1,0 +1,10 @@
+<h2>Something went wrong</h2>
+<p class="meta">An unexpected error occurred.</p>
+
+<% if settings.environment != :production && @error %>
+  <div class="flash error" style="white-space:pre-wrap">
+    <strong><%= @error.class %>:</strong> <%= @error.message %>
+  </div>
+<% end %>
+
+<p><a class="btn" href="/students">Back to Students</a></p>

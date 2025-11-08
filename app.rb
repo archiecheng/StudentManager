@@ -152,3 +152,14 @@ post "/logout" do
   set_flash :success, "Logout successfully"
   redirect "/login"
 end
+
+not_found do
+  status 404
+  erb :not_found
+end
+
+error do
+  status 500
+  @error = env["sinatra.error"]
+  erb :internal_error
+end
