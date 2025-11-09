@@ -9,8 +9,8 @@ set :sessions,
     key: "sinatra.session",
     httponly: true,
     same_site: :lax,
-    secure: false,  # 如果你用 HTTPS，可以改成 true
-    secret: ENV.fetch("SESSION_SECRET") { SecureRandom.hex(64) }  # 128 hex 字符=64字节
+    secure: false,
+    secret: ENV.fetch("SESSION_SECRET") { SecureRandom.hex(64) }  # 128 hex characters = 64 bytes
 
 helpers do
   def flash(type = :info)
@@ -120,7 +120,7 @@ get "/signup" do
 end
 
 post "/signup" do
-  @panel_class = "panel-auth"  # 失败时也要带上，防抖动
+  @panel_class = "panel-auth"  # Also bring it when you fail, anti-shake
   user = User.new(email: params[:email],
                   password: params[:password],
                   password_confirmation: params[:password_confirmation])
@@ -170,10 +170,9 @@ error do
   erb :internal_error
 end
 
-# 学生列表（搜索 + 分页）
-# 学生列表（搜索 + 分页；按 ID 搜索不跳转）
+# Student list (search + paging; search by ID does not jump)
 get "/students" do
-  require_login!   # 如果你已统一在前置过滤里做了，可以去掉这行
+  require_login!
 
   per_page = 5
   page = params[:page].to_i
@@ -183,9 +182,9 @@ get "/students" do
   scope = Student.order(:created_at)
 
   unless q.empty?
-    if q.match?(/\A\d+\z/)                 # 纯数字：按 id 精确过滤
+    if q.match?(/\A\d+\z/)                 # Pure numbers: precise filtering by id
       scope = scope.where(id: q.to_i)
-    else                                   # 其他：按 name 模糊匹配（不区分大小写）
+    else                                   # Others: Fuzzy matching by name (case-insensitive)
       scope = scope.where("LOWER(name) LIKE ?", "%#{q.downcase}%")
     end
   end

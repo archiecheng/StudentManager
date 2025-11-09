@@ -16,14 +16,14 @@
   box-sizing: border-box;
 }
 
-/* ---- Sticky footer 基础 ---- */
+/* ----Sticky footer basics ---- */
 html {
   height: 100%;
 }
 body {
-  min-height: 100vh; /* 关键：至少铺满一屏 */
+  min-height: 100vh; /* Key: fill at least one screen */
   margin: 0;
-  display: flex; /* 关键：上下三段布局（header / container / footer） */
+  display: flex; /* Key: three-section layout (header/container/footer) */
   flex-direction: column;
   font: 16px/1.6 ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
     PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial;
@@ -36,9 +36,9 @@ body {
   );
 }
 
-/* layout */
+/* Layout */
 .container {
-  flex: 1 0 auto; /* 关键：中间区域吃掉剩余高度 */
+  flex: 1 0 auto; /* Key: The middle area eats up the remaining height */
   max-width: 980px;
   margin: 40px auto;
   padding: 0 20px;
@@ -99,7 +99,7 @@ header {
   opacity: 1;
 }
 
-/* card/panel */
+/* Card/panel */
 .panel {
   background: linear-gradient(
     180deg,
@@ -113,13 +113,13 @@ header {
   width: 100%;
 }
 
-/* 只用于登录/注册等窄表单页面 */
+/* Only used for narrow form pages such as login/registration */
 .panel.panel-auth {
-  width: 850px;/* 你也可以改成 560/720 */
-  margin: 0 auto; /* 居中 */
+  width: 850px;/* You can also change it to 560/720 */
+  margin: 0 auto; /* center */
 }
 
-/* flash */
+/* Flash */
 .flash {
   padding: 12px 14px;
   border-radius: 12px;
@@ -140,7 +140,7 @@ header {
   border-color: rgba(255, 107, 107, 0.35);
 }
 
-/* table */
+/* Table */
 .table-wrap {
   overflow: auto;
 }
@@ -166,7 +166,7 @@ tbody tr:hover {
   background: rgba(255, 255, 255, 0.02);
 }
 
-/* form */
+/* Form */
 form label {
   display: block;
   font-size: 13px;
@@ -201,7 +201,7 @@ input:focus {
   margin-top: 14px;
 }
 
-/* buttons */
+/* Buttons */
 .btn {
   appearance: none;
   border: none;
@@ -235,7 +235,7 @@ input:focus {
   cursor: not-allowed;
 }
 
-/* meta */
+/* Meta */
 h1,
 h2 {
   margin: 0 0 14px;
@@ -245,7 +245,7 @@ h2 {
   font-size: 13px;
 }
 
-/* footer（会贴底） */
+/* Footer (will stick to the bottom) */
 .footer {
   color: var(--muted);
   font-size: 12px;

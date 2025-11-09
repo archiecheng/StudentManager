@@ -2,7 +2,7 @@ require "active_record"
 require "bcrypt"
 
 class User < ActiveRecord::Base
-  has_secure_password   # 需要 bcrypt；提供 password= / authenticate 等方法
+  has_secure_password   # Requires bcrypt; provide password= /authenticate and other methods
   validates :email, presence: true, uniqueness: true,
                     format: { with: URI::MailTo::EMAIL_REGEXP, message: "must be a valid email address" }
 

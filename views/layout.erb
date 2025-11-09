@@ -29,7 +29,7 @@
     <% if (f = session[:flash]) %>
       <% type = f.keys.first; msg = f.values.first %>
       <div class="flash <%= type %>"><%= msg %></div>
-      <% session.delete(:flash) %>  <!-- 读后即焚 -->
+      <% session.delete(:flash) %>  <!--Burn after reading -->
     <% end %>
     <div class="container">
       <div class="panel <%= @panel_class %>">
