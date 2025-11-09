@@ -115,11 +115,15 @@ end
 
 # Signup
 get "/signup" do
+  @panel_class = "panel-auth"
   erb :signup
 end
 
 post "/signup" do
-  user = User.new(email: params[:email], password: params[:password], password_confirmation: params[:password_confirmation])
+  @panel_class = "panel-auth"  # 失败时也要带上，防抖动
+  user = User.new(email: params[:email],
+                  password: params[:password],
+                  password_confirmation: params[:password_confirmation])
   if user.save
     set_flash :success, "Signup successfully. Please login."
     redirect "/login"
@@ -131,10 +135,12 @@ end
 
 # Login
 get "/login" do
+  @panel_class = "panel-auth"
   erb :login
 end
 
 post "/login" do
+  @panel_class = "panel-auth"
   user = User.find_by(email: params[:email])
   if user && user.authenticate(params[:password])
     session[:user_id] = user.id
@@ -165,7 +171,10 @@ error do
 end
 
 # 学生列表（搜索 + 分页）
+# 学生列表（搜索 + 分页；按 ID 搜索不跳转）
 get "/students" do
+  require_login!   # 如果你已统一在前置过滤里做了，可以去掉这行
+
   per_page = 5
   page = params[:page].to_i
   page = 1 if page < 1
@@ -173,15 +182,12 @@ get "/students" do
   q = params[:q].to_s.strip
   scope = Student.order(:created_at)
 
-  if !q.empty?
-    # 如果 q 是纯数字且存在对应 id，直接跳详情页（满足“Show a particular record”）
-    if q.match?(/\A\d+\z/)
-      if (st = Student.find_by(id: q))
-        redirect "/students/#{st.id}"
-      end
+  unless q.empty?
+    if q.match?(/\A\d+\z/)                 # 纯数字：按 id 精确过滤
+      scope = scope.where(id: q.to_i)
+    else                                   # 其他：按 name 模糊匹配（不区分大小写）
+      scope = scope.where("LOWER(name) LIKE ?", "%#{q.downcase}%")
     end
-    # 否则按名字模糊搜索（SQLite 下 LOWER 可用）
-    scope = scope.where("LOWER(name) LIKE ?", "%#{q.downcase}%")
   end
 
   total = scope.count

@@ -26,13 +26,13 @@
         </div>
       </div>
     </header>
+    <% if (f = session[:flash]) %>
+      <% type = f.keys.first; msg = f.values.first %>
+      <div class="flash <%= type %>"><%= msg %></div>
+      <% session.delete(:flash) %>  <!-- 读后即焚 -->
+    <% end %>
     <div class="container">
-      <% if (f = session[:flash]) %>
-        <% type = f.keys.first; msg = f.values.first %>
-        <div class="flash <%= type %>"><%= msg %></div>
-        <% session.delete(:flash) %>  <!-- 读后即焚 -->
-      <% end %>
-      <div class="panel">
+      <div class="panel <%= @panel_class %>">
         <%= yield %>
       </div>
     </div>
