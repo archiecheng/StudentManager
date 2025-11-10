@@ -193,6 +193,15 @@ get "/students" do
   total_pages = (total.to_f / per_page).ceil
   total_pages = 1 if total_pages == 0
 
+  # Search feedback (only displayed when 'q' is entered; to avoid refreshing every page, it can be displayed only on the first page).
+  if !q.empty? && page == 1
+    if total > 0
+      set_flash :success, %(Found #{total} result#{'s' if total != 1} for "#{q}".)
+    else
+      set_flash :info, %(No students found for "#{q}".)
+    end
+  end
+
   offset = (page - 1) * per_page
   @students = scope.limit(per_page).offset(offset)
   @page = page
