@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
   <component name="ChangeListManager">
-    <list default="true" id="a7b4628c-a3b7-4190-bd6d-7308153b11b2" name="Changes" comment="" />
+    <list default="true" id="a7b4628c-a3b7-4190-bd6d-7308153b11b2" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/db/development.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/db/development.sqlite3" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,9 +15,9 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 1
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="35G9ehdF0OLMPD4afHYbiP0DBjt" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
@@ -23,9 +28,13 @@
     "ModuleVcsDetector.initialDetectionPerformed": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "RunOnceActivity.git.unshallow": "true",
-    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1762725698061",
+    "com.intellij.lang.ruby.rbs.tools.collection.workspace.sync.RbsCollectionUpdateProjectActivity#LAST_UPDATE_TIMESTAMP": "1762730375839",
     "git-widget-placeholder": "main",
     "last_opened_file_path": "D:/scu course/Computer Science and Engineering/Quarter4/CSEN278 - Advanced Web Programming/assignment/assignment3/StudentManagementWebApp/sinatra-student-manager",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
     "settings.editor.selected.configurable": "preferences.pluginManager",
     "vue.rearranger.settings.migration": "true"
@@ -47,6 +56,7 @@
       <option name="presentableId" value="Default" />
       <updated>1762725638018</updated>
       <workItem from="1762725639457" duration="99000" />
+      <workItem from="1762730315370" duration="605000" />
     </task>
     <servers />
   </component>
